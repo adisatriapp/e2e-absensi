@@ -1,4 +1,4 @@
-name: 🌌 CYBERPUNK // PLAYWRIGHT OPS
+name: 🌌 CYBERPUNK // AMP PLAYWRIGHT OPS
 
 on:
   push:
@@ -6,77 +6,71 @@ on:
   pull_request:
     branches: [ main, develop ]
   repository_dispatch:
-    types: [web-updated]
+    types: [automation-amp-updated]
 
 permissions:
   contents: write
 
 jobs:
-  cyber_ops:
+  cyber_amp_ops:
     runs-on: ubuntu-latest
     environment: Stage
 
     steps:
-      - name: 🔮 Booting Neon Console
+      - name: 🔮 Neon Boot Sequence
         run: |
           echo -e "\033[36m"
-          echo " ██████╗██╗   ██╗██████╗ ███████╗██████╗ "
-          echo "██╔════╝╚██╗ ██╔╝██╔══██╗██╔════╝██╔══██╗"
-          echo "██║      ╚████╔╝ ██████╔╝█████╗  ██████╔╝"
-          echo "██║       ╚██╔╝  ██╔══██╗██╔══╝  ██╔══██╗"
-          echo "╚██████╗   ██║   ██████╔╝███████╗██║  ██║"
-          echo " ╚═════╝   ╚═╝   ╚═════╝ ╚══════╝╚═╝  ╚═╝"
+          echo " ██████╗ █████╗ ███╗   ███╗██████╗ "
+          echo "██╔════╝██╔══██╗████╗ ████║██╔══██╗"
+          echo "██║     ███████║██╔████╔██║██████╔╝"
+          echo "██║     ██╔══██║██║╚██╔╝██║██╔═══╝ "
+          echo "╚██████╗██║  ██║██║ ╚═╝ ██║██║     "
+          echo " ╚═════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝     "
           echo -e "\033[0m"
-          echo -e "\033[32m[+] Neural interface online\033[0m"
+          echo -e "\033[32m[+] Neural grid connected\033[0m"
           sleep 1
 
-      - name: 🧾 Syncing Source Matrix
+      - name: 🧾 Syncing Code Matrix
         uses: actions/checkout@v4
 
-      - name: ⚙️ Injecting Node Runtime
+      - name: ⚙️ Inject Node Core
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - name: 🧠 Restoring Dependency Cache
+      - name: 🧠 Restore Dependency Cache
         uses: actions/cache@v4
         with:
           path: node_modules
           key: node-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
-      - name: 🛰️ Restoring Browser Arsenal
+      - name: 🛰️ Restore Browser Arsenal
         uses: actions/cache@v4
         with:
           path: ~/.cache/ms-playwright
           key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
-      - name: 📦 Downloading Modules
+      - name: 📦 Download Cyber Modules
         run: |
-          echo -e "\033[36m[*] Fetching external modules...\033[0m"
+          echo -e "\033[36m[*] Pulling external modules...\033[0m"
           npm ci
           echo -e "\033[32m[✓] Modules synchronized\033[0m"
 
-      - name: 🌐 Deploying Browser Engines
+      - name: 🌐 Deploy Browser Engines
         run: |
-          echo -e "\033[33m[*] Installing headless browser cores...\033[0m"
+          echo -e "\033[33m[*] Activating headless browser cores...\033[0m"
           npx playwright install --with-deps
           echo -e "\033[32m[✓] Browser engines armed\033[0m"
 
-      - name: ⚡ Execute Cyber Tests
+      - name: ⚡ Execute AMP Test Protocol
         env:
           BASE_URL: ${{ vars.BASE_URL }}
-          SUPERVISOR_EMAIL: ${{ vars.SUPERVISOR_EMAIL }}
-          SUPERVISOR_PASSWORD: ${{ secrets.LOGIN_PASSWORD }}
-          DIRUT_EMAIL: ${{ vars.DIRUT_EMAIL }}
-          DIRUT_PASSWORD: ${{ secrets.LOGIN_PASSWORD }}
-          HR_EMAIL: ${{ vars.HR_EMAIL }}
-          HR_PASSWORD: ${{ secrets.LOGIN_PASSWORD }}
-          ADMIN_EMAIL: ${{ vars.ADMIN_EMAIL }}
-          ADMIN_PASSWORD: ${{ secrets.LOGIN_PASSWORD }}
+          LOGIN_EMAIL: ${{ vars.LOGIN_EMAIL }}
+          LOGIN_PASSWORD: ${{ secrets.LOGIN_PASSWORD }}
         run: |
-          echo -e "\033[35m[⚡] Initiating automated strike sequence...\033[0m"
+          echo -e "\033[35m[⚡] Launching automated strike sequence...\033[0m"
           npx playwright test
-          echo -e "\033[32m[✓] Test execution completed\033[0m"
+          echo -e "\033[32m[✓] Test protocol completed\033[0m"
 
       - name: 🧬 Compile Allure Intelligence
         if: always()
@@ -93,11 +87,11 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: allure-report
 
-      - name: 📡 Package Digital Evidence
+      - name: 📡 Secure Digital Evidence
         if: always()
         run: |
           set -eux
-          echo -e "\033[36m[*] Packaging operation artifacts...\033[0m"
+          echo -e "\033[36m[*] Securing operation artifacts...\033[0m"
           rm -f playwright-artifacts.zip || true
           if [ -d playwright-report ]; then
             zip -r playwright-artifacts.zip playwright-report || true
@@ -105,18 +99,18 @@ jobs:
           if [ -d test-results ]; then
             zip -r playwright-artifacts.zip test-results || true
           fi
-          echo -e "\033[32m[✓] Evidence secured\033[0m"
+          echo -e "\033[32m[✓] Evidence vault sealed\033[0m"
 
       - name: 🗄️ Upload Artifact Vault
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: cyberpunk-artifacts
+          name: cyberpunk-amp-artifacts
           path: playwright-artifacts.zip
 
       - name: 📊 Upload Visual Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: cyberpunk-playwright-report
+          name: cyberpunk-amp-playwright-report
           path: playwright-report/
