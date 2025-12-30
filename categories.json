@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Assertion Errors",
+    "matchedStatuses": ["failed"],
+    "messageRegex": ".*expect.*"
+  },
+  {
+    "name": "Timeout Errors",
+    "matchedStatuses": ["broken"],
+    "messageRegex": ".*Timeout.*"
+  },
+  {
+    "name": "Element Not Found",
+    "matchedStatuses": ["broken", "failed"],
+    "messageRegex": ".*locator.*|.*waiting for.*"
+  },
+  {
+    "name": "Infrastructure Issues",
+    "matchedStatuses": ["broken"],
+    "messageRegex": ".*ECONNREFUSED.*|.*ENOTFOUND.*"
+  }
+]

@@ -72,6 +72,9 @@ jobs:
           npx playwright test
           echo -e "\033[32m[✓] Test protocol completed\033[0m"
 
+      - name: Copy categories
+        run: cp categories.json allure-results/
+        
       - name: 🧬 Compile Allure Intelligence
         if: always()
         run: |
