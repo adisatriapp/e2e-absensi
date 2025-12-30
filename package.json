@@ -1,5 +1,5 @@
 {
-  "name": "e2e-pms",
+  "name": "e2e-absensi",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -13,16 +13,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Raja-Derek/e2e-pms.git"
+    "url": "git+https://github.com/Raja-Derek/e2e-absensi.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/Raja-Derek/e2e-pms/issues"
+    "url": "https://github.com/Raja-Derek/e2e-absensi/issues"
   },
-  "homepage": "https://github.com/Raja-Derek/e2e-pms#readme",
+  "homepage": "https://github.com/Raja-Derek/e2e-absensi#readme",
   "devDependencies": {
     "@playwright/test": "^1.57.0",
     "@types/node": "^24.10.1",

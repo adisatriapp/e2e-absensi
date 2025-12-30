@@ -1,6 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
 import * as dotenv from 'dotenv';
-import { AspekPage } from './tests/pages/aspekPage';
 
 if (!process.env.CI) {
   dotenv.config();
@@ -75,58 +74,6 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
 
-    // {
-    //   name: 'supervisor',
-    //   use: {
-    //     ...devices['Desktop Chrome'],
-    //     storageState: './tests/auth/supervisor.json'
-    //   }
-    // },
-    // {
-    //   name: 'director',
-    //   use: {
-    //     ...devices['Desktop Chrome'],
-    //     storageState: './tests/auth/director.json'
-    //   }
-    // },
-    // {
-    //   name: 'hr',
-    //   use: {
-    //     ...devices['Desktop Chrome'],
-    //     storageState: './tests/auth/hr.json'
-    //   }
-    // }
-
-    // {
-    //   name: 'firefox',
-    //   use: { ...devices['Desktop Firefox'] },
-    // },
-
-    // {
-    //   name: 'webkit',
-    //   use: { ...devices['Desktop Safari'] },
-    // },
-
-
-    /* Test against mobile viewports. */
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: { ...devices['Pixel 5'] },
-    // },
-    // {
-    //   name: 'Mobile Safari',
-    //   use: { ...devices['iPhone 12'] },
-    // },
-
-    /* Test against branded browsers. */
-    // {
-    //   name: 'Microsoft Edge',
-    //   use: { ...devices['Desktop  Edge'], channel: 'msedge' },
-    // },
-    // {
-    //   name: 'Google Chrome',
-    //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
-    // },
   ],
 
   /* Run your local dev server before starting the tests */
